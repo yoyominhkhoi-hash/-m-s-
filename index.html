@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi Đếm Số Vô Tận</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        #counter {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #00ffcc;
+            margin: 20px 0;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff4757;
+            color: white;
+            transition: 0.2s;
+        }
+        button:hover {
+            background-color: #ff6b81;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Trò chơi Đếm Số Vô Tận</h1>
+    <p>Nhấn nút bên dưới để bắt đầu đếm không bao giờ dừng!</p>
+    
+    <div id="counter">0</div>
+    
+    <button id="toggleBtn" onclick="toggleGame()">Bắt đầu</button>
+
+    <script>
+        let count = 0;
+        let isRunning = false;
+        let timer = null;
+        
+        const counterDisplay = document.getElementById('counter');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        function toggleGame() {
+            if (!isRunning) {
+                // Bắt đầu chạy
+                isRunning = true;
+                toggleBtn.textContent = "Dừng lại";
+                toggleBtn.style.backgroundColor = "#ffa502";
+                
+                timer = setInterval(() => {
+                    count++;
+                    counterDisplay.textContent = count;
+                }, 100); // Tốc độ chạy (100ms tăng 1 số, bạn có thể chỉnh nhỏ hơn để chạy nhanh hơn)
+            } else {
+                // Dừng lại
+                isRunning = false;
+                toggleBtn.textContent = "Tiếp tục";
+                toggleBtn.style.backgroundColor = "#2ed573";
+                
+                clearInterval(timer);
+            }
+        }
+    </script>
+
+</body>
+</html>
